@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Friends Poker</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23b8892e'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23fff' stroke-width='2' stroke-dasharray='4 3'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section id="lobby">
+  <div class="lobby-card">
+    <h1>Friends <em>Poker</em></h1>
+    <p class="sub">Texas Hold’em with play-money chips. Make a table, share the code, deal.</p>
+
+    <label>Your name
+      <input id="name" maxlength="16" placeholder="e.g. Sam" autocomplete="nickname">
+    </label>
+
+    <div class="cols">
+      <div class="panel">
+        <h2>Create a table</h2>
+        <label>Starting chips <input id="cfgChips" type="number" min="20" value="1000"></label>
+        <label>Small blind <input id="cfgSb" type="number" min="1" value="10"></label>
+        <p class="hint">Big blind is double the small blind.</p>
+        <button id="createBtn" class="primary">Create table</button>
+      </div>
+      <div class="panel">
+        <h2>Join a table</h2>
+        <label>Table code <input id="code" maxlength="4" placeholder="ABCD" autocapitalize="characters" spellcheck="false"></label>
+        <button id="joinBtn" class="primary">Join table</button>
+      </div>
+    </div>
+    <p id="lobbyMsg" class="msg" role="alert"></p>
+    <button id="lbBtn" class="ghost">🏆 Leaderboard</button>
+  </div>
+</section>
+
+<section id="game" hidden>
+  <header>
+    <div class="brand">Friends <em>Poker</em></div>
+    <div class="room">Table <b id="roomcode"></b>
+      <button id="copyBtn" class="ghost sm">Copy invite link</button>
+    </div>
+    <div class="blinds" id="blinds"></div>
+    <button id="lbBtn2" class="ghost sm">Leaderboard</button>
+    <button id="leaveBtn" class="ghost sm">Leave</button>
+  </header>
+
+  <main>
+    <div class="stage">
+      <div class="tablewrap"><div class="table" id="table"></div></div>
+      <div id="actions" class="actions"></div>
+    </div>
+    <aside>
+      <div class="box"><h3>Hand log</h3><div id="log" class="scroll"></div></div>
+      <div class="box chat"><h3>Chat</h3><div id="chat" class="scroll"></div>
+        <form id="chatForm"><input id="chatInput" maxlength="200" placeholder="Say something…" autocomplete="off"><button class="primary sm">Send</button></form>
+      </div>
+    </aside>
+  </main>
+</section>
+
+<dialog id="lbDialog">
+  <h2>All-time leaderboard</h2>
+  <p class="hint">Net chips won or lost across every hand, by player name.</p>
+  <div id="lbBody"></div>
+  <form method="dialog"><button class="primary">Close</button></form>
+</dialog>
+<div id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
